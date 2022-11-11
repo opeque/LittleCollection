@@ -1,0 +1,96 @@
+<view class="block">
+  <text class="title">{{name}}</text>
+  <text class="desc">{{desc}}</text>
+</view>
+
+<view class="block">
+  <text class="tip">规则</text>
+  <text class="tip">1. 仅管理人员可查看打卡记录</text>
+  <text class="tip">2. 问卷调查时间: {{startDate}} - {{endDate}}</text>
+</view>
+
+<view class="block">
+  <button
+    wx:if="{{!canIUseGetUserProfile}}"
+    class="signin"
+    open-type="getUserInfo"
+    bindgetuserinfo="getUserInfo"
+    hover-class="navigator-hover"
+  >
+    点击参与
+  </button>
+  <button
+    wx:else
+    class="signin"
+    bindtap="getUserProfile"
+    hover-class="navigator-hover"
+  >
+    点击参与
+  </button>
+</view>
+
+<view class="setting-block">
+  <button
+    wx:if="{{showInviteManager}}"
+    class="setting-item"
+    open-type="share"
+    data-type="manager"
+    hover-class="navigator-hover"
+  >
+    <text>邀请管理员</text>
+    <view class="right-arrow" />
+  </button>
+  <button
+    wx:if="{{showInviteMember}}"
+    class="setting-item"
+    open-type="share"
+    data-type="member"
+    hover-class="navigator-hover"
+  >
+    <text>邀请成员打卡</text>
+    <view class="right-arrow" />
+  </button>
+  <button
+    bindtap="toMyRecords"
+    class="setting-item"
+    hover-class="navigator-hover"
+  >
+    <text>我的打卡记录</text>
+    <view class="right-arrow" />
+  </button>
+</view>
+
+<view wx:if="{{recordList.length > 0}}" class="block">
+  <view
+    wx:for="{{recordList}}"
+    wx:key="_id"
+    class="record-item"
+  >
+    <image src="{{item.avatarUrl}}" mode="aspectFill" class="avatar" />
+    <view class="content">
+      <view class="info">
+        <text class="nickname">{{item.nickName}}</text>
+        <view class="more"></view>
+      </view>
+      <view
+        wx:for="{{item.answerList}}"
+        wx:for-item="answer"
+        wx:key="qid"
+        class="answer"
+      >
+        <text class="question">{{answer.name}}</text>
+        <text wx:if="{{answer.type === 'text'}}" class="text-answer">{{answer.answer}}</text>
+        <image
+          wx:if="{{answer.type === 'image'}}"
+          class="img-answer"
+          src="{{answer.answer}}"
+          mode="aspectFit"
+          data-url="{{answer.answer}}"
+          catch:tap="previewImage"
+          style="width:{{answer.width}}px; height:{{answer.height}}px;"
+        />
+      </view>
+      <text class="time">{{item.createTime}}</text>
+    </view>
+  </view>
+</view>

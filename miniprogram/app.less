@@ -1,0 +1,41 @@
+page {
+  width: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background: #F6F7FB;
+
+  --borderColor: #E6E6E6;
+  --titleColor: #A0A0A0;
+  --buttonColor: #4883D4;
+}
+
+// 解决选项过长时挤变形问题
+radio .wx-radio-input,
+checkbox .wx-checkbox-input {
+  flex: none;
+}
+
+.line1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.right-arrow {
+  padding-right: 1em;
+  position: relative;
+}
+.right-arrow::after {
+  position: absolute;
+  top: 50%;
+  right: 0.2em;
+  width: 0.6em;
+  height: 0.6em;
+  border-top: 1px solid var(--titleColor);
+  border-right: 1px solid var(--titleColor);
+  box-sizing: border-box;
+  content: "";
+  transform-origin: center;
+  transform: translate(0, -50%) rotate(45deg);
+}

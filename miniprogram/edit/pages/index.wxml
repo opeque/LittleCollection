@@ -1,0 +1,91 @@
+<view class="block">
+  <text class="title">标题与描述</text>
+  <view class="title-content">
+    <view class="left">
+      <text class="name line1">{{name}}</text>
+      <text class="desc line1">{{desc}}</text>
+    </view>
+    <view
+      class="edit"
+      bind:tap="toEditTitle"
+      hover-class="navigator-hover"
+    >
+      {{name ? '编辑': '添加标题'}}
+    </view>
+  </view>
+</view>
+
+<view class="block">
+  <text class="title">问题</text>
+  <view class="question">
+    <view
+      wx:for="{{questionList}}"
+      wx:key="qid"
+      data-qid="{{item.qid}}"
+      data-name="{{item.name}}"
+      data-type="{{item.type}}"
+      data-ismust="{{item.isMust}}"
+      bind:tap="toEditQuestion"
+      class="item"
+    >
+      <text>{{item.name}}</text>
+      <icon type="cancel" data-qid="{{item.qid}}" data-name="{{item.name}}" catchtap="deleteQuestion" />
+    </view>
+    <view
+      class="edit add-question"
+      bindtap="addQuestion"
+      hover-class="navigator-hover"
+    >
+      + 添加问题
+    </view>
+  </view>
+</view>
+
+<view class="block">
+  <text class="title">设置</text>
+  <view class="setting">
+    <text>开始日期</text>
+    <picker
+      mode="date"
+      value="{{startDate}}"
+      bindchange="changeStartDate"
+    >
+      {{startDate || '选择开始日期'}}
+    </picker>
+  </view>
+  <view class="setting">
+    <text>结束日期</text>
+    <picker
+      mode="date"
+      value="{{endDate}}"
+      start="{{startDate}}"
+      bindchange="changeEndDate"
+    >
+      {{endDate || '选择结束日期'}}
+    </picker>
+  </view>
+</view>
+
+<view class="block">
+  <text class="title">分享图片</text>
+  <view class="setting">
+    <text>自定义分享图</text>
+    <image
+      src="{{shareImage || '../../images/default-pic.png'}}"
+      bindtap="chooseShareImage"
+      class="share-img"
+      mode="aspectFill"
+    />
+  </view>
+</view>
+
+<view class="footer-height" />
+<view class="footer">
+  <button
+    class="confirm"
+    bindtap="save"
+    hover-class="navigator-hover"
+  >
+    确定
+  </button>
+</view>

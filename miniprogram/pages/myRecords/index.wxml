@@ -1,0 +1,34 @@
+<view wx:if="{{recordList.length > 0}}" class="block">
+  <view
+    wx:for="{{recordList}}"
+    wx:key="_id"
+    class="record-item"
+  >
+    <image src="{{item.avatarUrl}}" mode="aspectFill" class="avatar" />
+    <view class="content">
+      <view class="info">
+        <text class="nickname">{{item.nickName}}</text>
+        <view class="more"></view>
+      </view>
+      <view
+        wx:for="{{item.answerList}}"
+        wx:for-item="answer"
+        wx:key="qid"
+        class="answer"
+      >
+        <text class="question">{{answer.name}}</text>
+        <text wx:if="{{answer.type === 'text'}}" class="text-answer">{{answer.answer}}</text>
+        <image
+          wx:if="{{answer.type === 'image'}}"
+          class="img-answer"
+          src="{{answer.answer}}"
+          mode="aspectFit"
+          data-url="{{answer.answer}}"
+          catch:tap="previewImage"
+          style="width:{{answer.width}}px; height:{{answer.height}}px;"
+        />
+      </view>
+      <text class="time">{{item.createTime}}</text>
+    </view>
+  </view>
+</view>

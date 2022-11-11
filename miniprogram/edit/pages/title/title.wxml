@@ -1,0 +1,30 @@
+<view class="block">
+  <text class="title">标题</text>
+  <view class="content">
+    <input
+      class="input"
+      value="{{name}}"
+      bindinput="editInput"
+      maxlength="20"
+      placeholder="标题(最多20个字)"
+    />
+  </view>
+</view>
+
+<view class="block">
+  <text class="title">问卷描述</text>
+  <view class="content">
+    <textarea
+      class="textarea"
+      value="{{desc}}"
+      bind:input="editTextarea"
+      auto-height
+      show-confirm-bar="{{false}}"
+      placeholder="问卷描述"
+    />
+  </view>
+</view>
+
+<view>
+  <button class="save" bindtap="save">保存</button>
+</view>

@@ -1,0 +1,32 @@
+<view class="block">
+  <text class="title">字段设置</text>
+  <view class="item">
+    <text>字段名称</text>
+    <input
+      type="text"
+      value="{{name}}"
+      bindinput="changeName"
+      maxlength="30"
+      placeholder="最多30个字"
+      class="input"
+    />
+  </view>
+  <view class="item">
+    <text>字段类型</text>
+    <picker
+      range="{{typeList}}"
+      range-key="name"
+      value="{{typeIndex}}"
+      bindchange="changeType"
+      class="right-arrow"
+    >
+      {{typeList[typeIndex].name}}
+    </picker>
+  </view>
+  <view class="item">
+    <text>必填</text>
+    <switch checked="{{isMust}}" bindchange="changeMust" type="checkbox" color="#4883D4" />
+  </view>
+</view>
+
+<button class="save" bindtap="save" hover-class="navigator-hover">保存</button>

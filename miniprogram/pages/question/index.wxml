@@ -1,0 +1,27 @@
+<view class="block" wx:for="{{questionList}}" wx:key="qid">
+  <text class="name">
+    <text wx:if="{{item.isMust === 1}}" class="must">* </text>
+    <text>{{index + 1}}. {{item.name}}</text>
+  </text>
+  <input
+    type="text"
+    wx:if="{{item.type === 'text'}}"
+    data-qid="{{item.qid}}"
+    bindinput="changeInput"
+    maxlength="30"
+    class="input"
+    value="{{item.answer}}"
+    placeholder="请输入{{item.name}}, 最多30个字"
+  />
+  <view
+    wx:elif="{{item.type === 'image'}}"
+    data-qid="{{item.qid}}"
+    bindtap="chooseImg"
+    class="img-wrap"
+  >
+    <image wx:if="{{item.answer}}" src="{{item.answer}}" mode="aspectFill" class="img" />
+    <image wx:else src="../../images/add-pic.png" mode="aspectFill" class="add-img" />
+  </view>
+</view>
+
+<button bindtap="save" class="save" hover-class="navigator-hover">确定</button>

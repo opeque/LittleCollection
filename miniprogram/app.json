@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/index",
+    "pages/question/index",
+    "pages/myRecords/index"
+  ],
+  "subpackages": [
+    {
+      "root": "edit",
+      "pages": [
+        "pages/index",
+        "pages/title/title",
+        "pages/question/question"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小收集",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

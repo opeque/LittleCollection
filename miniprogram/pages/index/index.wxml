@@ -1,0 +1,24 @@
+<view class="block">
+  <text class="title">创建</text>
+  <view class="button" bind:tap="toCreate" hover-class="navigator-hover">+ 创建问卷</view>
+</view>
+
+<view class="block">
+  <text class="title">我的</text>
+  <block wx:if="{{list.length}}">
+    <view
+      wx:for="{{list}}"
+      data-id="{{item.id}}"
+      bind:tap="toDetail"
+      wx:key="id"
+      class="wenjuan"
+      hover-class="navigator-hover"
+    >
+      <text class="name line1">{{item.name}}</text>
+      <text class="desc line1">{{item.desc}}</text>
+    </view>
+  </block>
+  <view wx:else class="empty">
+    <image src="../../images/empty.png" mode="aspectFit" class="empty-img" />
+  </view>
+</view>
